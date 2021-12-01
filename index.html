@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- These two libraries are local versions of datatables: https://datatables.net/download/ -->
+    <link rel="stylesheet" type="text/css" href="/lib/datatables.min.css"/>
+    <script type="text/javascript" src="/lib/datatables.min.js"></script>
+    
+    <!-- Include the Tableau Extensions library so we can communicate with Tableau -->
+    <script src="/lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Include our own style sheets and javascript code -->
+    <link rel="stylesheet" href="../../demo-snippets/complete.css">
+    <link rel="stylesheet" href="../../lib/google-material-icons.css">
+    <script src="../../lib/demoHelpers.js"></script>
+    <script src="/superstore.js"></script>
+</head>
+<style>
+  .center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }
+</style>
+
+<body>
+  <h4 class="center">
+    Hello World!!!!!!!!
+    <div id="test">
+  </h4>
+  <p>This button transfers you to another website!</p>
+  <a href="http://bitdegree.org" target="_blank">
+    <button>Click me!</button>
+  </a>
+
+  <button onclick="myFunction()">Click me</button>
+
+  <p id="demo"></p>
+  
+  <script>
+  function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+  }
+  </script>
+
+
+<button onclick="myFunction2()">Click me2</button>
+<p id="demo2"></p>
+<script>
+$(document).ready(function() {
+
+  // Hook up an event handler for the load button click.
+  // Wait to initialize until the button is clicked.
+  $("#initializeButton").click(function() {
+
+    // Disable the button after it's been clicked
+    $("#initializeButton").prop('disabled', true);
+
+    tableau.extensions.initializeAsync().then(function() {
+
+      // Initialization succeeded! Get the dashboard
+      var dashboard = tableau.extensions.dashboardContent.dashboard;
+
+      // Display the name of dashboard in the UI
+      $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
+    }, function(err) {
+
+      // something went wrong in initialization
+      $("#resultBox").html("Error while Initializing: " + err.toString());
+    });
+  });
+});
+</script>
+
+
+
+
+<script>
+  $(document).ready(function() {
+  
+    // Hook up an event handler for the load button click.
+    // Wait to initialize until the button is clicked.
+    $("#initializeButton2").click(function() {
+  
+      // Disable the button after it's been clicked
+      $("#initializeButton2").prop('disabled', true);
+  
+      tableau.extensions.initializeAsync().then(function() {
+  
+        // Initialization succeeded! Get the dashboard
+        var dashboard = tableau.extensions.dashboardContent.dashboard;
+  
+        // Display the name of dashboard in the UI
+        $("#resultBox2").html("I'm running in a dashboard named22222222222 <strong>" + dashboard.name + "</strong>");
+      }, function(err) {
+  
+        // something went wrong in initialization
+        $("#resultBox2").html("Error while Initializing: " + err.toString());
+      });
+    });
+  });
+  </script>
+
+
+
+<div class="container">
+  <div>
+    <h1>Hello Extensions!</h1>
+    <p id="resultBox" class="lead">Not Initialized</p>
+    <button id="initializeButton" class="btn btn-primary">Initialize Extensions API</button>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div>
+    <h1>Hello Extensions!2</h1>
+    <p id="resultBox2" class="lead">Not Initialized</p>
+    <button id="initializeButton2" class="btn btn-primary">Initialize Extensions API</button>
+  </div>
+</div>
+
+
+</body>
+
+</html>
+
+
